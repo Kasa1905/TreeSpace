@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "TreeSpace",
+  "description": "Visualize Google Drive folders as DSA-style trees.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "TreeSpace",
+    "default_popup": "popup/index.html"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": true
+  },
+  "permissions": []
+}
