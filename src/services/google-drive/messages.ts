@@ -7,7 +7,8 @@ export type BackgroundRequest =
   | { type: "list-folders"; parentId: string }
   | { type: "get-master-folder" }
   | { type: "set-master-folder"; folder: MasterFolder }
-  | { type: "build-tree" };
+  | { type: "build-tree" }
+  | { type: "refresh-tree" };
 
 export type BackgroundResponse =
   | { ok: true; authenticated: boolean }

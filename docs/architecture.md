@@ -48,6 +48,17 @@ The Master Folder is changed only by an explicit selection action. Browsing chil
 
 `GoogleDriveTreeBuilder` accepts the persisted Master Folder as its root and recursively asks the Drive adapter for immediate children. The adapter handles API pagination and normalizes Drive metadata into provider-service item types; the builder converts those items into `TreeNode` values and calculates folder sizes bottom-up. Shortcuts become leaf nodes with zero size and are never traversed. Folder IDs and node IDs are tracked for defensive duplicate and loop handling.
 
+### Runtime Tree State
+
+`TreeSpaceRuntime` owns the in-memory lifecycle around the persisted Master Folder and the recursive builder:
+
+```text
+MasterFolderStore → TreeSpaceRuntime → TreeDataState → visualization consumers
+                                    └→ TreeViewState
+```
+
+`TreeDataState` contains the current `TreeNode` snapshot and lifecycle status. `TreeViewState` contains visualization mode, expanded node IDs, and an independent current-folder ID. Loading or refreshing replaces only the tree snapshot; changing visualization mode, expansion, or current-folder state never calls Drive or mutates `TreeNode`.
+
 ### Tree Model
 
 The core tree model represents files, folders, and shortcuts consistently regardless of how the source provider stores them.

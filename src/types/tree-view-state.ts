@@ -1,4 +1,1 @@
-export interface TreeViewState {
-  expandedNodeIds: ReadonlySet<string>;
-  currentNodeId?: string;
-}
+export type { TreeViewState, VisualizationMode } from "./tree-runtime";

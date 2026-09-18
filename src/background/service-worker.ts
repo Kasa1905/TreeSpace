@@ -3,11 +3,13 @@ import { GoogleDriveApi } from "../services/google-drive/drive-api";
 import { GoogleDriveTreeBuilder } from "../services/google-drive/tree-builder";
 import type { BackgroundRequest, BackgroundResponse } from "../services/google-drive/messages";
 import { chromeStorage, MasterFolderStore } from "../services/storage/master-folder-store";
+import { TreeSpaceRuntime } from "../services/tree-space-runtime";
 
 const auth = new ChromeIdentityAuth();
 const driveApi = new GoogleDriveApi(auth);
 const treeBuilder = new GoogleDriveTreeBuilder(driveApi);
 const masterFolderStore = new MasterFolderStore(chromeStorage);
+const treeRuntime = new TreeSpaceRuntime(masterFolderStore, treeBuilder);
 
 chrome.runtime.onInstalled.addListener(() => {
   console.info("TreeSpace service worker installed");
@@ -36,14 +38,26 @@ async function handleRequest(request: BackgroundRequest): Promise<BackgroundResp
     case "set-master-folder":
       await masterFolderStore.set(request.folder);
       return { ok: true };
-    case "build-tree": {
-      const masterFolder = await masterFolderStore.get();
-      if (!masterFolder) {
-        throw new Error("Choose a Master Folder before building the TreeSpace tree.");
-      }
-      return { ok: true, tree: await treeBuilder.build(masterFolder) };
-    }
+    case "build-tree":
+      return buildTreeResponse(await treeRuntime.loadTree());
+    case "refresh-tree":
+      return buildTreeResponse(await treeRuntime.refresh());
   }
+}
+
+function buildTreeResponse(state: ReturnType<TreeSpaceRuntime["getState"]>): BackgroundResponse {
+  if (!state.treeData.tree) {
+    throw new Error(state.treeData.error ?? "Choose a Master Folder before building the TreeSpace tree.");
+  }
+
+  return {
+    ok: true,
+    tree: {
+      tree: state.treeData.tree,
+      errors: state.treeData.traversalErrors,
+      complete: state.treeData.status === "ready"
+    }
+  };
 }
 
 async function getSession(interactive: boolean): Promise<BackgroundResponse> {

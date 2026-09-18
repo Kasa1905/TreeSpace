@@ -53,3 +53,9 @@
 **Decision:** The Master Folder is persisted separately from Drive browsing state and changes only through an explicit TreeSpace folder-selection action.
 
 **Reason:** The selected folder is the future visualization root. Drive navigation must never implicitly rebuild or replace that root.
+
+## ADR-010: Runtime Tree and View State Separation
+
+**Decision:** `TreeSpaceRuntime` owns an in-memory `TreeDataState` snapshot and a separate `TreeViewState`. It loads and refreshes from the existing `MasterFolderStore` and recursive builder; it does not persist the tree or perform Drive REST operations directly.
+
+**Reason:** Future visualizations must share one tree snapshot while independently changing visualization mode, expansion, and current-folder state without refetching or mutating provider-independent data.

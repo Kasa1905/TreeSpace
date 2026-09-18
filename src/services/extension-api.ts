@@ -42,7 +42,15 @@ export async function setMasterFolder(folder: MasterFolder): Promise<void> {
 }
 
 export async function buildTree(): Promise<TreeBuildResult> {
-  const response = await send({ type: "build-tree" });
+  return requestTree("build-tree");
+}
+
+export async function refreshTree(): Promise<TreeBuildResult> {
+  return requestTree("refresh-tree");
+}
+
+async function requestTree(type: "build-tree" | "refresh-tree"): Promise<TreeBuildResult> {
+  const response = await send({ type });
   if (response.ok && "tree" in response) {
     return response.tree;
   }
