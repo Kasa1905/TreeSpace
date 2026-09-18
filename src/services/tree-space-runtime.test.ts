@@ -126,7 +126,7 @@ describe("TreeSpaceRuntime", () => {
       visualizationMode: "radial",
       currentFolderId: "child-folder"
     });
-    expect(runtime.getState().viewState.expandedNodeIds).toEqual(new Set(["child-folder"]));
+    expect(runtime.getState().viewState.expandedNodeIds).toEqual(new Set(["master-folder", "child-folder"]));
   });
 
   it("keeps current folder and expansion state independent from the Master Folder", async () => {

@@ -115,7 +115,8 @@ export class TreeSpaceRuntime {
             status: "error",
             error: "TreeSpace loaded a partial tree with traversal errors.",
             traversalErrors: result.errors
-          }
+          },
+          viewState: this.getInitialViewState(result.tree.id)
         });
       }
 
@@ -124,7 +125,8 @@ export class TreeSpaceRuntime {
           tree: result.tree,
           status: "ready",
           traversalErrors: []
-        }
+        },
+        viewState: this.getInitialViewState(result.tree.id)
       });
     } catch (error: unknown) {
       return this.update({
@@ -136,6 +138,17 @@ export class TreeSpaceRuntime {
         }
       });
     }
+  }
+
+  private getInitialViewState(rootId: string): TreeRuntimeState["viewState"] {
+    if (this.state.viewState.expandedNodeIds.size > 0) {
+      return this.state.viewState;
+    }
+
+    return {
+      ...this.state.viewState,
+      expandedNodeIds: new Set([rootId])
+    };
   }
 
   private update(change: Partial<TreeRuntimeState>): TreeRuntimeState {

@@ -59,3 +59,9 @@
 **Decision:** `TreeSpaceRuntime` owns an in-memory `TreeDataState` snapshot and a separate `TreeViewState`. It loads and refreshes from the existing `MasterFolderStore` and recursive builder; it does not persist the tree or perform Drive REST operations directly.
 
 **Reason:** Future visualizations must share one tree snapshot while independently changing visualization mode, expansion, and current-folder state without refetching or mutating provider-independent data.
+
+## ADR-011: Classic Tree Uses Runtime-Owned Expansion
+
+**Decision:** The Classic Tree renders the shared runtime `TreeNode` snapshot and delegates folder expansion to `TreeSpaceRuntime.setExpanded`. It does not maintain a separate recursive data copy or expansion state.
+
+**Reason:** This keeps manual view interaction separate from provider-independent data and allows later visualizations to consume the same snapshot and view state.

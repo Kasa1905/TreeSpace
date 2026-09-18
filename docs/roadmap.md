@@ -13,7 +13,7 @@ Goal: turn a Google Drive folder into an interactive DSA-style tree.
 - [x] Recursive folder size calculation
 - [x] Shortcut detection and zero-size handling
 - [x] Runtime tree state and data lifecycle
-- [ ] Classic Tree visualization
+- [x] Classic Tree visualization
 - [ ] Branch Tree visualization
 - [ ] Radial Tree visualization
 - [ ] View switching without refetching Drive data

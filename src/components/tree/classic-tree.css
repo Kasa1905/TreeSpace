@@ -1,0 +1,115 @@
+.classic-tree {
+  margin-top: 20px;
+}
+
+.classic-tree__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.classic-tree__heading p {
+  margin: 0;
+}
+
+.classic-tree__heading span {
+  color: #46645e;
+  font: 11px/1.2 Arial, sans-serif;
+}
+
+.classic-tree__root,
+.classic-tree__children {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.classic-tree__children {
+  margin-left: 18px;
+  border-left: 1px solid rgb(36 49 58 / 22%);
+}
+
+.classic-tree__row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 6px;
+  padding: 6px 0 6px calc(var(--tree-depth) * 4px);
+}
+
+.classic-tree__toggle,
+.classic-tree__toggle-spacer {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 24px;
+}
+
+.classic-tree__toggle {
+  padding: 0;
+  color: #c55a3c;
+  background: transparent;
+  border: 0;
+  font-size: 16px;
+}
+
+.classic-tree__node-button {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 0;
+  overflow: hidden;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  font: 15px/1.3 Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.classic-tree__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.classic-tree__icon {
+  flex: 0 0 auto;
+  min-width: 34px;
+  color: #46645e;
+  font: 700 9px/1 Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.classic-tree__icon--shortcut,
+.classic-tree__badge {
+  color: #c55a3c;
+}
+
+.classic-tree__badge {
+  flex: 0 0 auto;
+  font: 700 9px/1 Arial, sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.classic-tree__size {
+  flex: 0 0 auto;
+  color: #46645e;
+  font: 11px/1 Arial, sans-serif;
+}
+
+.classic-tree__item--current > .classic-tree__row {
+  background: rgb(197 90 60 / 10%);
+}
+
+.classic-tree__empty {
+  padding: 5px 0 8px 26px;
+  color: #46645e;
+  font: italic 12px/1.3 Georgia, "Times New Roman", serif;
+}
