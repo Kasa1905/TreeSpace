@@ -1,0 +1,98 @@
+.radial-tree {
+  margin-top: 20px;
+}
+
+.radial-tree__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.radial-tree__heading p {
+  margin: 0;
+}
+
+.radial-tree__heading span {
+  color: #46645e;
+  font: 11px/1.2 Arial, sans-serif;
+}
+
+.radial-tree__viewport {
+  max-width: 100%;
+  overflow: auto;
+  background: rgb(223 233 229 / 35%);
+  border: 1px solid rgb(36 49 58 / 12%);
+}
+
+.radial-tree__canvas {
+  display: block;
+  min-width: 620px;
+  min-height: 620px;
+}
+
+.radial-tree__connections line {
+  stroke: #c55a3c;
+  stroke-width: 1.5;
+}
+
+.radial-tree__node-button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  color: #24313a;
+  background: #fffdf8;
+  border: 1px solid rgb(36 49 58 / 28%);
+  border-left: 3px solid #c55a3c;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgb(36 49 58 / 8%);
+  cursor: pointer;
+  font: 13px/1.15 Georgia, "Times New Roman", serif;
+  text-align: left;
+}
+
+.radial-tree__node--root .radial-tree__node-button {
+  border-color: #46645e;
+  border-left-width: 4px;
+  box-shadow: 3px 3px 0 rgb(70 100 94 / 18%);
+}
+
+.radial-tree__node--current .radial-tree__node-button {
+  background: #f8e4db;
+}
+
+.radial-tree__node-button:hover,
+.radial-tree__node-button:focus-visible {
+  border-color: #c55a3c;
+  outline: 2px solid rgb(197 90 60 / 25%);
+  outline-offset: 1px;
+}
+
+.radial-tree__node-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.radial-tree__node-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.radial-tree__node-meta {
+  color: #46645e;
+  font: 10px/1 Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.radial-tree__shortcut {
+  margin-left: 5px;
+  color: #c55a3c;
+  font-weight: 700;
+  text-transform: uppercase;
+}

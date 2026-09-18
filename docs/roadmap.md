@@ -15,7 +15,7 @@ Goal: turn a Google Drive folder into an interactive DSA-style tree.
 - [x] Runtime tree state and data lifecycle
 - [x] Classic Tree visualization
 - [x] Branch Tree visualization
-- [ ] Radial Tree visualization
+- [x] Radial Tree visualization
 - [x] View switching without refetching Drive data
 - [ ] File/folder click handling
 - [ ] New-tab behavior, ON by default

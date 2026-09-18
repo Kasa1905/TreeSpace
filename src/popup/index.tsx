@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FoundationPage } from "../components/common/FoundationPage";
 import { ClassicTree } from "../components/tree/ClassicTree";
 import { BranchTree } from "../components/branch/BranchTree";
+import { RadialTree } from "../components/radial/RadialTree";
 import { FolderBrowser } from "./FolderBrowser";
 import { buildTree, getMasterFolder, getSession, setMasterFolder, signIn } from "../services/extension-api";
 import type { GoogleDriveFolder, MasterFolder } from "../services/google-drive/types";
@@ -109,6 +110,13 @@ function Popup() {
               >
                 Branch
               </button>
+              <button
+                type="button"
+                className={runtimeState.viewState.visualizationMode === "radial" ? "is-active" : ""}
+                onClick={() => runtime.setVisualizationMode("radial")}
+              >
+                Radial
+              </button>
             </div>
           )}
           {runtimeState.treeData.status === "loading" && <p>Loading tree...</p>}
@@ -129,6 +137,16 @@ function Popup() {
           )}
           {runtimeState.treeData.tree && runtimeState.viewState.visualizationMode === "branch" && (
             <BranchTree
+              tree={runtimeState.treeData.tree}
+              viewState={runtimeState.viewState}
+              onToggle={(nodeId) => runtime.setExpanded(
+                nodeId,
+                !runtimeState.viewState.expandedNodeIds.has(nodeId)
+              )}
+            />
+          )}
+          {runtimeState.treeData.tree && runtimeState.viewState.visualizationMode === "radial" && (
+            <RadialTree
               tree={runtimeState.treeData.tree}
               viewState={runtimeState.viewState}
               onToggle={(nodeId) => runtime.setExpanded(

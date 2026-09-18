@@ -118,12 +118,13 @@ describe("TreeSpaceRuntime", () => {
     const treeBeforeViewChanges = runtime.getState().treeData.tree;
 
     runtime.setVisualizationMode("branch");
+    runtime.setVisualizationMode("radial");
     runtime.setExpanded("child-folder", true);
     runtime.setCurrentFolder("child-folder");
 
     expect(runtime.getState().treeData.tree).toBe(treeBeforeViewChanges);
     expect(runtime.getState().viewState).toMatchObject({
-      visualizationMode: "branch",
+      visualizationMode: "radial",
       currentFolderId: "child-folder"
     });
     expect(runtime.getState().viewState.expandedNodeIds).toEqual(new Set(["master-folder", "child-folder"]));

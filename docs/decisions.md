@@ -71,3 +71,9 @@
 **Decision:** Branch Tree renders each expanded folder as a node card with a vertical sibling rail and horizontal parent-child connectors. It consumes the shared runtime snapshot and expansion state.
 
 **Reason:** This makes parent-child relationships visually distinct from Classic Tree's indented list without adding a layout dependency or a second data model.
+
+## ADR-013: Radial Tree Uses Ephemeral Polar Layout
+
+**Decision:** Radial Tree calculates deterministic polar coordinates from the visible shared `TreeNode` snapshot and `expandedNodeIds`. It renders nodes and parent-child connectors with SVG and keeps layout coordinates local to the renderer.
+
+**Reason:** A lightweight ring-based layout communicates depth and branching without a graph dependency, physics simulation, duplicated tree data, or Drive refetches.

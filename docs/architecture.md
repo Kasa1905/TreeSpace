@@ -67,6 +67,10 @@ MasterFolderStore → TreeSpaceRuntime → TreeDataState → visualization consu
 
 `BranchTree` consumes the same `TreeDataState.tree` and `TreeViewState`. It uses a deterministic horizontal layout: each expanded folder renders its children in a vertical branch rail with horizontal parent-child connectors. Branch Tree changes only the renderer when `visualizationMode` changes; it does not refetch Drive data or create another tree structure.
 
+### Radial Tree
+
+`RadialTree` consumes the same runtime snapshot and view state as Classic and Branch. Its renderer computes an ephemeral deterministic polar layout for visible nodes: the root is centered, each depth advances to the next ring, and sibling angle ranges are divided evenly. SVG lines connect each point to its parent. Changing to Radial only changes `visualizationMode`; it does not rebuild, refetch, or mutate tree data.
+
 ### Tree Model
 
 The core tree model represents files, folders, and shortcuts consistently regardless of how the source provider stores them.
