@@ -68,6 +68,101 @@ h1 {
   line-height: 1.55;
 }
 
+button {
+  padding: 8px 12px;
+  color: #24313a;
+  background: #fffdf8;
+  border: 1px solid rgb(36 49 58 / 30%);
+  border-radius: 4px;
+  cursor: pointer;
+  font: 700 12px/1.2 Arial, sans-serif;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.foundation-page__action {
+  margin-top: 22px;
+  color: #fffdf8;
+  background: #c55a3c;
+  border-color: #c55a3c;
+}
+
+.foundation-page__note {
+  color: #46645e;
+  font-size: 13px !important;
+}
+
+.master-folder {
+  margin-top: 12px !important;
+  font-size: 20px !important;
+}
+
+.folder-browser {
+  margin-top: 2px;
+}
+
+.folder-browser__toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.folder-browser__toolbar h2 {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.folder-browser__list {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.folder-browser__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgb(36 49 58 / 12%);
+}
+
+.folder-browser__open {
+  flex: 1;
+  padding: 4px 0;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  font-weight: 400;
+}
+
+.folder-browser__open span,
+.master-folder span {
+  display: inline-block;
+  margin-right: 6px;
+  color: #c55a3c;
+  font: 700 9px/1 Arial, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.folder-browser__select {
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.folder-browser__error {
+  color: #a53d2b;
+}
+
 .foundation-page__status {
   margin-top: 18px !important;
   padding-top: 18px;

@@ -7,7 +7,7 @@ TreeSpace is a Chromium browser extension that turns a Google Drive folder into 
 ## Project Status
 
 **Current phase:** Phase 1 — Core MVP  
-**Status:** Foundation setup
+**Status:** Authentication and Master Folder selection
 
 ## Core Experience
 
@@ -44,9 +44,9 @@ The visualization layer is intentionally independent from Google Drive so future
 
 ### Phase 1 — Core MVP
 
-- [ ] Chromium Manifest V3 extension foundation
-- [ ] Google authentication
-- [ ] Google Drive folder selection
+- [x] Chromium Manifest V3 extension foundation
+- [x] Google authentication
+- [x] Google Drive folder selection
 - [ ] Recursive Drive traversal
 - [ ] Provider-independent tree data model
 - [ ] File size calculation
@@ -144,6 +144,23 @@ TreeSpace/
 - Treat shortcuts as references, not duplicated storage.
 - Avoid unnecessary permissions.
 - Keep the extension responsive for large folder trees.
+
+## Local Google Drive Setup
+
+TreeSpace uses the Chromium Identity API with a Google OAuth client configured as a **Chrome Extension** application. The client ID is intentionally not committed.
+
+1. Create or select a Google Cloud project.
+2. Enable the Google Drive API.
+3. Configure the Google Auth Platform consent screen and add the scope `https://www.googleapis.com/auth/drive.metadata.readonly`.
+4. Create a Chrome Extension OAuth client and use the TreeSpace extension ID as its Item ID.
+5. Add any external test accounts to the OAuth consent screen's test users.
+6. Build with the client ID in the environment:
+
+   ```sh
+   TREESPACE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com npm run build
+   ```
+
+The generated `dist/manifest.json` contains the client ID. The committed `manifest.json` contains only a placeholder, and no client secret is used or required. See [docs/google-oauth-setup.md](docs/google-oauth-setup.md) for extension ID and unpacked-extension details.
 
 ## License
 

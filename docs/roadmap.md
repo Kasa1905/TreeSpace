@@ -4,9 +4,9 @@
 
 Goal: turn a Google Drive folder into an interactive DSA-style tree.
 
-- [ ] Chromium Manifest V3 extension foundation
-- [ ] Google authentication
-- [ ] Google Drive folder selection
+- [x] Chromium Manifest V3 extension foundation
+- [x] Google authentication
+- [x] Google Drive folder selection
 - [ ] Recursive Drive traversal
 - [ ] Provider-independent tree data model
 - [ ] File size calculation

@@ -11,9 +11,21 @@
     "service_worker": "background/service-worker.js",
     "type": "module"
   },
+  "oauth2": {
+    "client_id": "__TREESPACE_GOOGLE_CLIENT_ID__",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.metadata.readonly"
+    ]
+  },
   "options_ui": {
     "page": "options/index.html",
     "open_in_tab": true
   },
-  "permissions": []
+  "permissions": [
+    "identity",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ]
 }

@@ -41,3 +41,15 @@
 **Decision:** Development follows the roadmap from Phase 1 through Phase 5.
 
 **Reason:** Core architecture should be validated before adding storage intelligence, advanced UX, exports, and additional providers.
+
+## ADR-008: Chrome Identity OAuth and Metadata-only Drive Access
+
+**Decision:** TreeSpace uses `chrome.identity.getAuthToken()` with the Google Drive scope `https://www.googleapis.com/auth/drive.metadata.readonly`. The OAuth client ID is supplied as `TREESPACE_GOOGLE_CLIENT_ID` at build time and is not committed.
+
+**Reason:** The Chrome Identity API is the platform-supported MV3 flow for Google OAuth. Metadata-only access is sufficient for listing accessible folders and avoids write, delete, download, and file-content permissions in this issue.
+
+## ADR-009: Fixed Master Folder
+
+**Decision:** The Master Folder is persisted separately from Drive browsing state and changes only through an explicit TreeSpace folder-selection action.
+
+**Reason:** The selected folder is the future visualization root. Drive navigation must never implicitly rebuild or replace that root.

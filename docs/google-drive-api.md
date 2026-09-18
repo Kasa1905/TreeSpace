@@ -48,7 +48,9 @@ Prefer the Drive-provided web view URL when available for opening an item. URL c
 
 ## Permissions
 
-Use the narrowest practical OAuth scope. Phase 1 is read-oriented, so write access should not be requested unless a later feature genuinely requires it.
+Use the narrowest practical OAuth scope. The folder browser uses `https://www.googleapis.com/auth/drive.metadata.readonly`, which is sufficient for the Drive `files.list` method and folder metadata. It does not permit file contents or write operations. This is a restricted scope and may require verification for public release.
+
+Authentication is performed by the MV3 Chrome Identity API with a Chrome Extension OAuth client. The client ID is injected into the built manifest from `TREESPACE_GOOGLE_CLIENT_ID`; client secrets are not used.
 
 ## Shared Drives
 

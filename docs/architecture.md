@@ -32,6 +32,18 @@ React + TypeScript components provide the popup, options/settings, and visualiza
 
 Google Drive-specific API code lives under `src/services/google-drive/`. The rest of the application should consume normalized data instead of depending directly on Drive API response shapes.
 
+Authentication and Drive API calls are handled by the background service worker. React surfaces communicate through the TreeSpace service boundary rather than calling `chrome.identity` or the Drive REST API directly.
+
+### Master Folder State
+
+The selected Master Folder is a persisted provider record, separate from `TreeNode` data and transient folder-browser location:
+
+```text
+Drive account → folder browser location → explicit folder selection → Master Folder storage
+```
+
+The Master Folder is changed only by an explicit selection action. Browsing child folders or reopening the extension never replaces it.
+
 ### Tree Model
 
 The core tree model represents files, folders, and shortcuts consistently regardless of how the source provider stores them.
