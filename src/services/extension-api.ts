@@ -1,5 +1,6 @@
 import type { GoogleDriveFolder, MasterFolder } from "./google-drive/types";
 import type { BackgroundRequest, BackgroundResponse } from "./google-drive/messages";
+import type { TreeBuildResult } from "./google-drive/tree-builder";
 
 export async function getSession(): Promise<{ authenticated: boolean }> {
   const response = await send({ type: "get-session" });
@@ -38,6 +39,14 @@ export async function setMasterFolder(folder: MasterFolder): Promise<void> {
   if (!response.ok) {
     throw new Error(getError(response));
   }
+}
+
+export async function buildTree(): Promise<TreeBuildResult> {
+  const response = await send({ type: "build-tree" });
+  if (response.ok && "tree" in response) {
+    return response.tree;
+  }
+  throw new Error(getError(response));
 }
 
 async function send(request: BackgroundRequest): Promise<BackgroundResponse> {

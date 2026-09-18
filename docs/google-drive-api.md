@@ -42,6 +42,8 @@ Binary files can expose a byte size through Drive metadata. Google-native Worksp
 
 Folder totals should sum the sizes of descendant files that have a meaningful byte size. Shortcuts always contribute `0 B`.
 
+The tree builder fetches every page of immediate children for each traversed folder. It preserves valid nodes when a descendant request fails and returns traversal errors alongside the partial tree. Folder and node IDs are tracked to prevent malformed parent relationships from causing infinite recursion or repeated nodes.
+
 ## Navigation
 
 Prefer the Drive-provided web view URL when available for opening an item. URL construction should not be duplicated throughout the UI.

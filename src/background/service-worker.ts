@@ -1,10 +1,12 @@
 import { ChromeIdentityAuth } from "../services/google-drive/auth";
 import { GoogleDriveApi } from "../services/google-drive/drive-api";
+import { GoogleDriveTreeBuilder } from "../services/google-drive/tree-builder";
 import type { BackgroundRequest, BackgroundResponse } from "../services/google-drive/messages";
 import { chromeStorage, MasterFolderStore } from "../services/storage/master-folder-store";
 
 const auth = new ChromeIdentityAuth();
 const driveApi = new GoogleDriveApi(auth);
+const treeBuilder = new GoogleDriveTreeBuilder(driveApi);
 const masterFolderStore = new MasterFolderStore(chromeStorage);
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -34,6 +36,13 @@ async function handleRequest(request: BackgroundRequest): Promise<BackgroundResp
     case "set-master-folder":
       await masterFolderStore.set(request.folder);
       return { ok: true };
+    case "build-tree": {
+      const masterFolder = await masterFolderStore.get();
+      if (!masterFolder) {
+        throw new Error("Choose a Master Folder before building the TreeSpace tree.");
+      }
+      return { ok: true, tree: await treeBuilder.build(masterFolder) };
+    }
   }
 }
 

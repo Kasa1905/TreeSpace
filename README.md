@@ -7,7 +7,7 @@ TreeSpace is a Chromium browser extension that turns a Google Drive folder into 
 ## Project Status
 
 **Current phase:** Phase 1 — Core MVP  
-**Status:** Authentication and Master Folder selection
+**Status:** Recursive Drive tree data generation
 
 ## Core Experience
 
@@ -47,11 +47,11 @@ The visualization layer is intentionally independent from Google Drive so future
 - [x] Chromium Manifest V3 extension foundation
 - [x] Google authentication
 - [x] Google Drive folder selection
-- [ ] Recursive Drive traversal
-- [ ] Provider-independent tree data model
-- [ ] File size calculation
-- [ ] Recursive folder size calculation
-- [ ] Shortcut detection and zero-size handling
+- [x] Recursive Drive traversal
+- [x] Provider-independent tree data model
+- [x] File size calculation
+- [x] Recursive folder size calculation
+- [x] Shortcut detection and zero-size handling
 - [ ] Classic Tree visualization
 - [ ] Branch Tree visualization
 - [ ] Radial Tree visualization

@@ -1,3 +1,17 @@
+export type GoogleDriveItemType = "file" | "folder" | "shortcut";
+
+export interface GoogleDriveItem {
+  id: string;
+  name: string;
+  type: GoogleDriveItemType;
+  mimeType: string;
+  size?: number;
+  webViewLink?: string;
+  modifiedTime?: string;
+  parents?: string[];
+  shortcutTargetId?: string;
+}
+
 export interface GoogleDriveFolder {
   id: string;
   name: string;
@@ -21,4 +35,5 @@ export interface GoogleDriveService {
   getSession(): Promise<DriveSession>;
   signIn(): Promise<DriveSession>;
   listFolders(parentId: string): Promise<GoogleDriveFolder[]>;
+  listChildren(parentId: string): Promise<GoogleDriveItem[]>;
 }

@@ -44,6 +44,10 @@ Drive account → folder browser location → explicit folder selection → Mast
 
 The Master Folder is changed only by an explicit selection action. Browsing child folders or reopening the extension never replaces it.
 
+### Recursive Tree Data
+
+`GoogleDriveTreeBuilder` accepts the persisted Master Folder as its root and recursively asks the Drive adapter for immediate children. The adapter handles API pagination and normalizes Drive metadata into provider-service item types; the builder converts those items into `TreeNode` values and calculates folder sizes bottom-up. Shortcuts become leaf nodes with zero size and are never traversed. Folder IDs and node IDs are tracked for defensive duplicate and loop handling.
+
 ### Tree Model
 
 The core tree model represents files, folders, and shortcuts consistently regardless of how the source provider stores them.
