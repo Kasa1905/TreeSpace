@@ -54,9 +54,9 @@ The visualization layer is intentionally independent from Google Drive so future
 - [x] Shortcut detection and zero-size handling
 - [x] Runtime tree state and data lifecycle
 - [x] Classic Tree visualization
-- [ ] Branch Tree visualization
+- [x] Branch Tree visualization
 - [ ] Radial Tree visualization
-- [ ] Visualization switching without refetching Drive data
+- [x] Visualization switching without refetching Drive data
 - [ ] File/folder click handling
 - [ ] New-tab behavior, enabled by default
 - [ ] New-tab preference setting

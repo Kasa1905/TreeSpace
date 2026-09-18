@@ -63,6 +63,10 @@ MasterFolderStore → TreeSpaceRuntime → TreeDataState → visualization consu
 
 `ClassicTree` consumes `TreeDataState.tree` and `TreeViewState` through props. Its recursive child component renders hierarchy, type indicators, and the already-calculated `TreeNode.size`. Folder toggles call the runtime's expansion operation; file and shortcut activation use the node's stored URL. The component does not access Google Drive services or create a second tree representation.
 
+### Branch Tree
+
+`BranchTree` consumes the same `TreeDataState.tree` and `TreeViewState`. It uses a deterministic horizontal layout: each expanded folder renders its children in a vertical branch rail with horizontal parent-child connectors. Branch Tree changes only the renderer when `visualizationMode` changes; it does not refetch Drive data or create another tree structure.
+
 ### Tree Model
 
 The core tree model represents files, folders, and shortcuts consistently regardless of how the source provider stores them.

@@ -14,9 +14,9 @@ Goal: turn a Google Drive folder into an interactive DSA-style tree.
 - [x] Shortcut detection and zero-size handling
 - [x] Runtime tree state and data lifecycle
 - [x] Classic Tree visualization
-- [ ] Branch Tree visualization
+- [x] Branch Tree visualization
 - [ ] Radial Tree visualization
-- [ ] View switching without refetching Drive data
+- [x] View switching without refetching Drive data
 - [ ] File/folder click handling
 - [ ] New-tab behavior, ON by default
 - [ ] Setting to disable new-tab behavior

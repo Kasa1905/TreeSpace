@@ -76,7 +76,7 @@
   white-space: nowrap;
 }
 
-.classic-tree__icon {
+.tree-node-icon {
   flex: 0 0 auto;
   min-width: 34px;
   color: #46645e;
@@ -86,7 +86,7 @@
   text-transform: uppercase;
 }
 
-.classic-tree__icon--shortcut,
+.tree-node-icon--shortcut,
 .classic-tree__badge {
   color: #c55a3c;
 }

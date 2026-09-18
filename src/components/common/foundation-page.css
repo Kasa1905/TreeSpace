@@ -90,6 +90,32 @@ button:disabled {
   border-color: #c55a3c;
 }
 
+.visualization-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.visualization-switcher__label {
+  margin-right: 4px;
+  color: #46645e;
+  font: 700 10px/1 Arial, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.visualization-switcher button {
+  padding: 5px 8px;
+  font-size: 10px;
+}
+
+.visualization-switcher button.is-active {
+  color: #fffdf8;
+  background: #46645e;
+  border-color: #46645e;
+}
+
 .foundation-page__note {
   color: #46645e;
   font-size: 13px !important;

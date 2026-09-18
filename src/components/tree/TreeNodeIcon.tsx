@@ -7,14 +7,14 @@ interface TreeNodeIconProps {
 
 export function TreeNodeIcon({ type, mimeType }: TreeNodeIconProps) {
   if (type === "folder") {
-    return <span className="classic-tree__icon" aria-label="Folder">Folder</span>;
+    return <span className="tree-node-icon" aria-label="Folder">Folder</span>;
   }
 
   if (type === "shortcut") {
-    return <span className="classic-tree__icon classic-tree__icon--shortcut" aria-label="Shortcut">Link</span>;
+    return <span className="tree-node-icon tree-node-icon--shortcut" aria-label="Shortcut">Link</span>;
   }
 
-  return <span className="classic-tree__icon" aria-label={getFileKind(mimeType)}>{getFileKind(mimeType)}</span>;
+  return <span className="tree-node-icon" aria-label={getFileKind(mimeType)}>{getFileKind(mimeType)}</span>;
 }
 
 function getFileKind(mimeType?: string): string {

@@ -1,0 +1,160 @@
+.branch-tree {
+  margin-top: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.branch-tree__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.branch-tree__heading p {
+  margin: 0;
+}
+
+.branch-tree__heading span {
+  color: #46645e;
+  font: 11px/1.2 Arial, sans-serif;
+}
+
+.branch-tree__root,
+.branch-tree__children {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.branch-tree__root {
+  min-width: max-content;
+}
+
+.branch-tree__children {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 14px 0 0 34px;
+  padding-left: 30px;
+}
+
+.branch-tree__children::before {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 0;
+  width: 1px;
+  content: "";
+  background: #c55a3c;
+}
+
+.branch-tree__branch {
+  position: relative;
+}
+
+.branch-tree__children > .branch-tree__branch::before,
+.branch-tree__children > .branch-tree__empty::before {
+  position: absolute;
+  top: 24px;
+  left: -30px;
+  width: 30px;
+  height: 1px;
+  content: "";
+  background: #c55a3c;
+}
+
+.branch-tree__children > .branch-tree__branch:last-child::after,
+.branch-tree__children > .branch-tree__empty:last-child::after {
+  position: absolute;
+  top: 25px;
+  bottom: -14px;
+  left: -31px;
+  width: 3px;
+  content: "";
+  background: #f4f1ea;
+}
+
+.branch-tree__node-wrap {
+  display: inline-flex;
+}
+
+.branch-tree__node {
+  display: flex;
+  min-width: 210px;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  color: #24313a;
+  text-align: left;
+  background: #fffdf8;
+  border: 1px solid rgb(36 49 58 / 24%);
+  border-left: 3px solid #c55a3c;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgb(36 49 58 / 8%);
+  font: 14px/1.2 Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.branch-tree__branch--current > .branch-tree__node-wrap .branch-tree__node {
+  background: #f8e4db;
+}
+
+.branch-tree__node:hover,
+.branch-tree__node:focus-visible {
+  border-color: #c55a3c;
+  outline: 2px solid rgb(197 90 60 / 25%);
+  outline-offset: 2px;
+}
+
+.branch-tree__caret,
+.branch-tree__caret-spacer {
+  display: inline-grid;
+  width: 16px;
+  height: 18px;
+  flex: 0 0 16px;
+  place-items: center;
+  color: #c55a3c;
+  font: 700 14px/1 Arial, sans-serif;
+}
+
+.branch-tree__name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.branch-tree__size {
+  margin-left: auto;
+  color: #46645e;
+  font: 11px/1 Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.tree-node-icon {
+  flex: 0 0 auto;
+  min-width: 34px;
+  color: #46645e;
+  font: 700 9px/1 Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tree-node-icon--shortcut,
+.branch-tree__badge {
+  color: #c55a3c;
+  font: 700 9px/1 Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.branch-tree__empty {
+  position: relative;
+  padding: 8px 10px;
+  color: #46645e;
+  font: italic 12px/1.2 Georgia, "Times New Roman", serif;
+}

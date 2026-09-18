@@ -65,3 +65,9 @@
 **Decision:** The Classic Tree renders the shared runtime `TreeNode` snapshot and delegates folder expansion to `TreeSpaceRuntime.setExpanded`. It does not maintain a separate recursive data copy or expansion state.
 
 **Reason:** This keeps manual view interaction separate from provider-independent data and allows later visualizations to consume the same snapshot and view state.
+
+## ADR-012: Branch Tree Uses Deterministic Horizontal Branches
+
+**Decision:** Branch Tree renders each expanded folder as a node card with a vertical sibling rail and horizontal parent-child connectors. It consumes the shared runtime snapshot and expansion state.
+
+**Reason:** This makes parent-child relationships visually distinct from Classic Tree's indented list without adding a layout dependency or a second data model.
