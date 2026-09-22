@@ -114,12 +114,20 @@ describe("extension API messaging", () => {
       callback(undefined);
     });
 
-    await expect(getSession()).rejects.toThrow("TreeSpace background service returned no valid response.");
+    await expect(getSession()).rejects.toThrow("TreeSpace background service returned no response.");
   });
 
   it("identifies an incomplete success response", async () => {
     respond({ ok: true } as BackgroundResponse);
 
     await expect(getSession()).rejects.toThrow("TreeSpace background service returned an incomplete response.");
+  });
+
+  it("surfaces a synchronous message transport failure", async () => {
+    runtime.sendMessage.mockImplementation(() => {
+      throw new Error("Extension context unavailable");
+    });
+
+    await expect(getSession()).rejects.toThrow("Extension context unavailable");
   });
 });

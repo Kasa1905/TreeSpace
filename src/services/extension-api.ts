@@ -59,20 +59,41 @@ async function requestTree(type: "build-tree" | "refresh-tree"): Promise<TreeBui
 
 async function send(request: BackgroundRequest): Promise<BackgroundResponse> {
   return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage(request, (response?: BackgroundResponse) => {
-      const runtimeError = chrome.runtime.lastError;
-      if (runtimeError) {
-        reject(new Error(runtimeError.message));
+    let settled = false;
+    const timeout = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        reject(new Error(`TreeSpace background service timed out handling ${request.type}.`));
+      }
+    }, 10_000);
+
+    const finish = (callback: () => void) => {
+      if (settled) {
         return;
       }
+      settled = true;
+      clearTimeout(timeout);
+      callback();
+    };
 
-      if (!response || typeof response.ok !== "boolean") {
-        reject(new Error("TreeSpace background service returned no valid response."));
-        return;
-      }
+    try {
+      chrome.runtime.sendMessage(request, (response?: BackgroundResponse) => {
+        const runtimeError = chrome.runtime.lastError;
+        if (runtimeError) {
+          finish(() => reject(new Error(runtimeError.message || "TreeSpace background service unavailable.")));
+          return;
+        }
 
-      resolve(response);
-    });
+        if (!response || typeof response.ok !== "boolean") {
+          finish(() => reject(new Error("TreeSpace background service returned no response.")));
+          return;
+        }
+
+        finish(() => resolve(response));
+      });
+    } catch (error: unknown) {
+      finish(() => reject(error instanceof Error ? error : new Error("TreeSpace message transport failed.")));
+    }
   });
 }
 

@@ -16,10 +16,16 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.runtime.onMessage.addListener((request: BackgroundRequest, _sender, sendResponse) => {
+  console.info(`TreeSpace message → ${getRequestType(request)}`);
   void handleRequest(request)
-    .then(sendResponse)
+    .then((response) => {
+      console.info(`TreeSpace response ← ${getRequestType(request)}`, response);
+      sendResponse(response);
+    })
     .catch((error: unknown) => {
-      sendResponse({ ok: false, error: getErrorMessage(error) } satisfies BackgroundResponse);
+      const response = { ok: false, error: getErrorMessage(error) } satisfies BackgroundResponse;
+      console.info(`TreeSpace response ← ${getRequestType(request)}`, response);
+      sendResponse(response);
     });
 
   return true;
