@@ -58,9 +58,28 @@ async function requestTree(type: "build-tree" | "refresh-tree"): Promise<TreeBui
 }
 
 async function send(request: BackgroundRequest): Promise<BackgroundResponse> {
-  return chrome.runtime.sendMessage(request);
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage(request, (response?: BackgroundResponse) => {
+      const runtimeError = chrome.runtime.lastError;
+      if (runtimeError) {
+        reject(new Error(runtimeError.message));
+        return;
+      }
+
+      if (!response || typeof response.ok !== "boolean") {
+        reject(new Error("TreeSpace background service returned no valid response."));
+        return;
+      }
+
+      resolve(response);
+    });
+  });
 }
 
 function getError(response: BackgroundResponse): string {
-  return response.ok ? "Unexpected response from TreeSpace background service." : response.error;
+  if (!response.ok) {
+    return response.error;
+  }
+
+  return "TreeSpace background service returned an incomplete response.";
 }

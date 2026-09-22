@@ -42,7 +42,16 @@ async function handleRequest(request: BackgroundRequest): Promise<BackgroundResp
       return buildTreeResponse(await treeRuntime.loadTree());
     case "refresh-tree":
       return buildTreeResponse(await treeRuntime.refresh());
+    default:
+      return {
+        ok: false,
+        error: `Unsupported TreeSpace background request: ${getRequestType(request)}`
+      };
   }
+}
+
+function getRequestType(request: BackgroundRequest): string {
+  return typeof request?.type === "string" ? request.type : "unknown";
 }
 
 function buildTreeResponse(state: ReturnType<TreeSpaceRuntime["getState"]>): BackgroundResponse {
